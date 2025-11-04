@@ -226,7 +226,7 @@ export default function BerandaIndex() {
               },
               {
                 title: "Urusan",
-                description: "Kebijakan tata kelola data pemerintah yang bertujuan untuk menghasilkan data berkualitas dan mudah diakses.",
+                description: "Kebijakan tata kelola data pemerintah untuk menghasilkan data berkualitas dan mudah diakses.",
                 count: dataTotal.urusan,
                 link: "/urusan",
                 gradient: "linear-gradient(135deg,  #3a7a60 0%, #3a7a60 100%)"
@@ -255,7 +255,7 @@ export default function BerandaIndex() {
         </div>
       </section>
 
-            <section className="feature-section" ref={featureRef}>
+      <section className="feature-section" ref={featureRef}>
         <div className="feature-container">
           <div className="feature-grid">
             {[

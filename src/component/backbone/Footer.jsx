@@ -54,7 +54,7 @@ return (
               <div className="d-flex align-items-start mb-2">
                 <span className="me-2" style={{ color: '#3b82f6', minWidth: '20px' }}>✉</span>
                 <a 
-                  href="mailto:info@lamtim.go.id" 
+                  href="" 
                   className="text-decoration-none"
                   style={{ color: '#3b82f6' }}
                 >
@@ -65,7 +65,7 @@ return (
               <div className="d-flex align-items-start">
                 <span className="me-2" style={{ color: '#3b82f6', minWidth: '20px' }}>☎</span>
                 <a 
-                  href="tel:01234567890" 
+                  href="" 
                   className="text-decoration-none"
                   style={{ color: '#3b82f6' }}
                 >

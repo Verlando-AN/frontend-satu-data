@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../../css/style.css";
 import Bupati from "../../../assets/bupati.png";
-import Beranda2 from "../../../assets/logolamptim.png";
+import Beranda2 from "../../../assets/logolamptim.jpeg";
 import Card1 from "../../../assets/card1.png";
 import Berkas from "../../../assets/berkas.png";
 

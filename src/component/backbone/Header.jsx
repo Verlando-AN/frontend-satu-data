@@ -1,6 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
+import Logo from "../../assets/IMG_Logo.png";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import Logo from "../../assets/IMG_Logo.png"
+import "../css/header.css"
 
 export default function Header() {
   return (
@@ -9,8 +10,7 @@ export default function Header() {
         <Link to="/" className="navbar-brand">
           <img 
             src={Logo}
-            alt="logo"
-            style={{ height: '70px' }}
+            alt="Satu Data Lampung Timur"
           />
         </Link>
         
@@ -27,7 +27,7 @@ export default function Header() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center">
+          <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link text-secondary fw-medium px-3" to="/">
                 Beranda
@@ -66,13 +66,8 @@ export default function Header() {
           </ul>
           
           <Link 
-            className="btn rounded-3 fw-medium px-4" 
+            className="btn btn-login rounded-3 fw-medium px-4" 
             to="/login"
-            style={{
-              background: 'linear-gradient(135deg, #fa6666 0%, #ff0c0c 100%)',
-              color: 'white',
-              border: 'none'
-            }}  
           >
             Login
           </Link>

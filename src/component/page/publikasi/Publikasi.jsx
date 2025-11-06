@@ -1,26 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import usePublikasi from "../../../hooks/usePublikasi.js";
 import "../../css/publikasi.css";
 
 export default function Publikasi() {
-  const [publikasiData, setPublikasiData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("https://api-satudata.lampungtimurkab.go.id/buku-digital", {
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setPublikasiData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Gagal mengambil data:", error);
-        setLoading(false);
-      });
-  }, []);
+  const { publikasiData, loading } = usePublikasi();
 
   return (
     <div className="publikasi-container">

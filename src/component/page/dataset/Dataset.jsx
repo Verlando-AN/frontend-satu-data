@@ -1,95 +1,24 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import icon from "../../../assets/dataseticon.png";
+import useDataset from "../../../hooks/useDataset.js";
 
 export default function Dataset() {
-  const [produsenSearch, setProdusenSearch] = useState("");
-  const [datasetSearch, setDatasetSearch] = useState("");
-  const [produsenList, setProdusenList] = useState([]);
-  const [datasets, setDatasets] = useState([]);
-  const [selectedProdusen, setSelectedProdusen] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalDatasets, setTotalDatasets] = useState(0);
-  const perPage = 7;
-
-  const stripHtml = (html) => {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
-  };
-
-  const calculateDaysAgo = (dateString) => {
-    const now = new Date();
-    const modified = new Date(dateString);
-    const diff = Math.floor((now - modified) / (1000 * 60 * 60 * 24));
-    return diff;
-  };
-
-  useEffect(() => {
-    const fetchProdusen = async () => {
-      try {
-        const res = await fetch("https://api-satudata.lampungtimurkab.go.id/list-opd");
-        const data = await res.json();
-        setProdusenList(data);
-      } catch (error) {
-        console.error("Gagal memuat data produsen:", error);
-      }
-    };
-    fetchProdusen();
-  }, []);
-
-  const fetchDatasets = async (page = 1, id_opd = null) => {
-    try {
-      let url = `https://api-satudata.lampungtimurkab.go.id/dataset?per_page=${perPage}&page=${page}`;
-      if (id_opd) url += `&id_user_opd=${id_opd}`;
-
-      const res = await fetch(url);
-      const data = await res.json();
-
-      const current = parseInt(res.headers.get("x-pagination-current-page")) || 1;
-      const total = parseInt(res.headers.get("x-pagination-page-count")) || 1;
-      const totalCount = parseInt(res.headers.get("x-pagination-total-count")) || 0;
-
-      const formatted = data.map((item) => {
-        const cleanText = stripHtml(item.description || "");
-        const shortDesc = cleanText.length > 120 ? cleanText.slice(0, 120) + "..." : cleanText;
-
-        return {
-          id: item.id,
-          title: item.uraian_dssd,
-          description: shortDesc,
-          producer: item.nama_opd,
-          date: new Date(item.modified).toLocaleDateString("id-ID"),
-          daysAgo: calculateDaysAgo(item.modified),
-        };
-      });
-
-      setDatasets(formatted);
-      setCurrentPage(current);
-      setTotalPages(total);
-      setTotalDatasets(totalCount);
-    } catch (error) {
-      console.error("Gagal memuat data dataset:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchDatasets(1);
-  }, []);
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      const newPage = currentPage - 1;
-      fetchDatasets(newPage, selectedProdusen);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      const newPage = currentPage + 1;
-      fetchDatasets(newPage, selectedProdusen);
-    }
-  };
+  const {
+    produsenSearch,
+    setProdusenSearch,
+    datasetSearch,
+    setDatasetSearch,
+    filteredProdusen,
+    filteredDatasets,
+    selectedProdusen,
+    setSelectedProdusen,
+    fetchDatasets,
+    handlePrev,
+    handleNext,
+    currentPage,
+    totalPages,
+    totalDatasets,
+  } = useDataset();
 
   const categories = [
     { name: "Sarana & Infrastruktur", count: 0 },
@@ -97,14 +26,6 @@ export default function Dataset() {
     { name: "Sosial & Kesejahteraan Masyarakat", count: 0 },
     { name: "Kebijakan & Legislasi", count: 0 },
   ];
-
-  const filteredProdusen = produsenList.filter((opd) =>
-    opd.nama_opd.toLowerCase().includes(produsenSearch.toLowerCase())
-  );
-
-  const filteredDatasets = datasets.filter((dataset) =>
-    dataset.title.toLowerCase().includes(datasetSearch.toLowerCase())
-  );
 
   return (
     <div className="py-5" style={{ backgroundColor: "#f8f9fa" }}>

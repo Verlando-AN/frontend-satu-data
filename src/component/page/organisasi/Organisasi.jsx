@@ -1,46 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import useOrganisasi from "../../../hooks/useOrganisasi.js";
 import Gambarsektoral from "../../../assets/sektoral.png";
 
 export default function Organisasi() {
-  const [activeTab, setActiveTab] = useState("Semua");
-  const [organisasiData, setOrganisasiData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const tabs = [
-    "Semua",
-    "Puskesmas",
-    "Badan",
-    "Bagian",
-    "Dinas",
-    "Sekretariat",
-    "Inspektorat",
-    "Satuan",
-    "Rumah",
-  ];
-
-  useEffect(() => {
-    fetch("https://api-satudata.lampungtimurkab.go.id/list-opd", {
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setOrganisasiData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Gagal mengambil data:", error);
-        setLoading(false);
-      });
-  }, []);
-
-  const filteredData =
-    activeTab === "Semua"
-      ? organisasiData
-      : organisasiData.filter((org) =>
-          org.nama_opd.toLowerCase().includes(activeTab.toLowerCase())
-        );
+  const { tabs, activeTab, setActiveTab, filteredData, loading } = useOrganisasi();
 
   return (
     <div className="container py-5">

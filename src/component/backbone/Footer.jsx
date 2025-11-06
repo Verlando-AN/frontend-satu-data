@@ -1,4 +1,5 @@
 import Logo from "../../assets/IMG_Logo.png";
+import "../css/header.css"
 export default function Footer() {
 
 return (

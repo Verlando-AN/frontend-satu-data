@@ -1,111 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import "../../css/style.css";
 import Bupati from "../../../assets/bupati.png";
 import Beranda2 from "../../../assets/logolamptim.jpeg";
 import Card1 from "../../../assets/card1.png";
 import Berkas from "../../../assets/berkas.png";
+import useBerandaData from "../../../hooks/useBerandaData.js";
 
 export default function BerandaIndex() {
-  const [opdList, setOpdList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [dataTotal, setDataTotal] = useState({
-    dataset: 0,
-    data_sektoral: 0,
-    urusan: 0,
-  });
-  const [actualData, setActualData] = useState({
-    dataset: 0,
-    data_sektoral: 0,
-    urusan: 0,
-  });
-  const [isVisible, setIsVisible] = useState({});
-  const counterRef = useRef(null);
-  const featureRef = useRef(null);
-  const categoryRef = useRef(null);
-
-  useEffect(() => {
-    fetch("https://api-satudata.lampungtimurkab.go.id/list-opd", {
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setOpdList(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Gagal mengambil data:", error);
-        setLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("https://api-satudata.lampungtimurkab.go.id/data-sektoral/beranda")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.total) {
-          setActualData({
-            dataset: data.total.dataset,
-            data_sektoral: data.total.data_sektoral,
-            urusan: data.total.urusan,
-          });
-        }
-      })
-      .catch((err) => {
-        console.error("Gagal memuat data:", err);
-        setActualData({
-          dataset: 1234,
-          data_sektoral: 567,
-          urusan: 89,
-        });
-      });
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (counterRef.current) observer.observe(counterRef.current);
-    if (featureRef.current) observer.observe(featureRef.current);
-    if (categoryRef.current) observer.observe(categoryRef.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (isVisible.counterSection && actualData.dataset > 0) {
-      const duration = 2000;
-      const steps = 60;
-      const increment = {
-        dataset: actualData.dataset / steps,
-        data_sektoral: actualData.data_sektoral / steps,
-        urusan: actualData.urusan / steps,
-      };
-
-      let currentStep = 0;
-      const timer = setInterval(() => {
-        currentStep++;
-        setDataTotal({
-          dataset: Math.min(Math.floor(increment.dataset * currentStep), actualData.dataset),
-          data_sektoral: Math.min(Math.floor(increment.data_sektoral * currentStep), actualData.data_sektoral),
-          urusan: Math.min(Math.floor(increment.urusan * currentStep), actualData.urusan),
-        });
-
-        if (currentStep >= steps) clearInterval(timer);
-      }, duration / steps);
-
-      return () => clearInterval(timer);
-    }
-  }, [isVisible.counterSection, actualData]);
+  const { opdList, loading, dataTotal, isVisible, counterRef, featureRef, categoryRef } = useBerandaData();
 
   return (
     <div className="beranda-container">

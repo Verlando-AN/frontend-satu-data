@@ -80,7 +80,7 @@ export default function Buku() {
 
 const styles = {
   container: {
-    maxWidth: "2000px",
+    maxWidth: "1100px",
     margin: "auto",
     padding: "20px",
     fontFamily: "'Poppins', sans-serif",

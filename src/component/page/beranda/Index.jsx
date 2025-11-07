@@ -10,7 +10,7 @@ export default function BerandaIndex() {
   const { opdList, loading, dataTotal, isVisible, counterRef, featureRef, categoryRef } = useBerandaData();
 
   return (
-    <div className="beranda-container">
+    <div className="beranda-container"> 
       <section id="home" className="hero-section">
         <div className="hero-background">
           <div className="floating-shape shape-1"></div>

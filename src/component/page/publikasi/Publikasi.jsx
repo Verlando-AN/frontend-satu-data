@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import usePublikasi from "../../../hooks/usePublikasi.js";
 import "../../css/publikasi.css";
 
@@ -22,12 +23,13 @@ export default function Publikasi() {
               year: "numeric",
             });
 
-            const fileUrl = `https://api-satudata.lampungtimurkab.go.id/${item.file}`;
-
             return (
               <div key={index} className="book-card">
-                
-                <a href={fileUrl} target="_blank" rel="noopener noreferrer" className="book-link">
+                <Link
+                  to={`/publikasi/buku/${item.buku_slug}`}
+                  key={index}
+                  className="book-link"
+                >
                   <div className="book-spine"></div>
                   <div className="book-cover">
                     <div className="book-content">
@@ -44,7 +46,7 @@ export default function Publikasi() {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             );
           })}
@@ -53,3 +55,5 @@ export default function Publikasi() {
     </div>
   );
 }
+
+

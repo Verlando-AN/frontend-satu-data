@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Logo from "../../../assets/IMG_Logo.png"
+// import { Button } from "@/components/ui/button"
 
 export default function Kontak() {
   const [formData, setFormData] = useState({
@@ -22,6 +23,10 @@ export default function Kontak() {
 
   return (
     <div className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
+
+      {/* <div className="p-6">
+        <Button>Click Me</Button>
+      </div> */}
       <div className="container">
         <div className="text-center mb-5">
           <h2 className="mb-3" style={{ color: '#F5A623', fontWeight: '600', fontSize: '36px' }}>

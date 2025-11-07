@@ -6,6 +6,7 @@ export default function DatasetSeriesTable({ dataset }) {
       <table className="table table-bordered">
         <thead className="bg-primary text-white">
           <tr>
+            <th rowSpan="2"></th>
             <th rowSpan="2">Kode</th>
             <th rowSpan="2">Wilayah</th>
             <th rowSpan="2">Komponen</th>

@@ -10,6 +10,7 @@ import Sektoral from "./component/page/sektoral/Sektoral";
 import Urusan from "./component/page/urusan/Urusan";
 import Organisasi from "./component/page/organisasi/Organisasi";
 import Publikasi from "./component/page/publikasi/Publikasi";
+import Buku from "./component/page/publikasi/Buku";
 import Kontak from "./component/page/kontak/Kontak";
 import Login from "./component/page/login/Login";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/urusan" element={<Urusan />} />
         <Route path="/organisasi" element={<Organisasi />} />
         <Route path="/publikasi" element={<Publikasi />} />
+        <Route path="/publikasi/buku/:slug" element={<Buku />} />
         <Route path="/kontak" element={<Kontak />} />
         <Route path="/login" element={<Login />} />
       </Routes>

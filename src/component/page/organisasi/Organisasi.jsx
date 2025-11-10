@@ -1,32 +1,25 @@
 import React from "react";
 import useOrganisasi from "../../../hooks/useOrganisasi.js";
 import Gambarsektoral from "../../../assets/sektoral.png";
+import "../../css/organisasi.css";
 
 export default function Organisasi() {
-  const { tabs, activeTab, setActiveTab, filteredData, loading } = useOrganisasi();
+  const { tabs, activeTab, setActiveTab, filteredData, loading, truncateNamaOpd } = useOrganisasi();
 
-  return (
-    <div className="container py-5">
-      <h2
-        className="mb-4"
-        style={{ color: "#F5A623", fontWeight: "600", fontSize: "42px" }}
-      >
-        Organisasi
-      </h2>
 
-      <div className="mb-4 d-flex flex-wrap gap-2">
+ return (
+    <div className="organisasi-container">
+      <div className="organisasi-header">
+        <h1 className="organisasi-title">Organisasi Perangkat Daerah</h1>
+        <p className="organisasi-subtitle">Kelola dan pantau data sektoral dari berbagai organisasi</p>
+      </div>
+
+      <div className="tab-navigation">
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className="btn px-4 py-2"
-            style={{
-              backgroundColor: activeTab === tab ? "#5CB85C" : "#6c757d",
-              color: "white",
-              fontWeight: "500",
-              border: "none",
-              borderRadius: "6px",
-            }}
+            className={`tab-button ${activeTab === tab ? "active" : ""}`}
           >
             {tab}
           </button>
@@ -34,68 +27,61 @@ export default function Organisasi() {
       </div>
 
       {loading ? (
-        <p>Sedang memuat data...</p>
+        <div className="loading-container">
+          <div className="spinner"></div>
+          <p>Memuat data...</p>
+        </div>
       ) : (
-        <div className="row g-4">
-          {filteredData.map((org) => (
-            <div key={org.id_opd} className="col-md-6 col-lg-3">
-              <div
-                className="card h-100 shadow-sm border-0"
-                style={{ borderRadius: "8px" }}
-              >
-                <div className="card-body text-center p-4">
-                  <div className="mb-3" style={{ fontSize: "64px" }}>
-                    <img 
-                      src={Gambarsektoral}
-                      alt="Ilustrasi Sektoral"
-                      className="sektoral"
-                      style={{ maxWidth: '80px' }}
-                    />
+        <>
+          <div className="data-summary">
+            <div className="data-item">
+              <span className="data-number">{filteredData.length}</span>
+              <span className="data-label">Total Organisasi</span>
+            </div>
+            <div className="data-item">
+              <span className="data-number">
+                {filteredData.reduce((sum, org) => sum + org.total_ref_sektoral, 0)}
+              </span>
+              <span className="data-label">Total Data Sektoral</span>
+            </div>
+          </div>
+
+          <div className="organisasi-grid">
+            {filteredData.map((org) => (
+              <div key={org.id_opd} className="org-card">
+                <div className="org-card-header">
+                  <div className="org-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="org-card-body">
+                  
+                  <h7 className="org-name">{truncateNamaOpd(org.nama_opd)}</h7>
+
+                  <div className="data-count">
+                    <span className="count-number">{org.total_ref_sektoral}</span>
+                    <span className="count-label">Data Sektoral</span>
                   </div>
 
-                  <h3
-                    className="mb-2"
-                    style={{
-                      color: "#F5A623",
-                      fontWeight: "700",
-                      fontSize: "36px",
-                    }}
-                  >
-                    {org.total_ref_sektoral}
-                  </h3>
-
-                  <p
-                    className="mb-3"
-                    style={{
-                      color: "#F5A623",
-                      fontWeight: "600",
-                      fontSize: "18px",
-                    }}
-                  >
-                    Data Sektoral
-                  </p>
-
-                  <p
-                    className="mb-0"
-                    style={{
-                      color: "#666",
-                      fontSize: "14px",
-                      lineHeight: "1.5",
-                    }}
-                  >
-                    {org.nama_opd}
-                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
           {filteredData.length === 0 && (
-            <p className="text-center mt-4 text-muted">
-              Tidak ada data untuk kategori <b>{activeTab}</b>.
-            </p>
+            <div className="empty-state">
+              <svg className="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4m0 4h.01"/>
+              </svg>
+              <p className="empty-text">Tidak ada data untuk kategori <strong>{activeTab}</strong></p>
+              <p className="empty-subtext">Coba pilih kategori lain atau tambahkan data baru</p>
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );

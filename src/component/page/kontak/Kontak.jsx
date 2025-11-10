@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import "../../css/kontak.css";
 import Logo from "../../../assets/IMG_Logo.png"
+import lokasi from "../../../assets/lokasi.png";
 // import { Button } from "@/components/ui/button"
 
 export default function Kontak() {
@@ -22,17 +24,17 @@ export default function Kontak() {
   };
 
   return (
-    <div className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
+    <div className="container-kontak">
 
       {/* <div className="p-6">
         <Button>Click Me</Button>
       </div> */}
       <div className="container">
         <div className="text-center mb-5">
-          <h2 className="mb-3" style={{ color: '#F5A623', fontWeight: '600', fontSize: '36px' }}>
+          <h2 className="judul">
             Kontak
           </h2>
-          <p style={{ color: '#666', fontSize: '14px' }}>
+          <p className="text-kontak" style={{ color: '#666', fontSize: '14px' }}>
             Informasi lebih lanjut dapat menghubungi melalui informasi kontak di bawah ini.
           </p>
         </div>
@@ -40,7 +42,7 @@ export default function Kontak() {
         <div className="row g-4">
           <div className="col-md-6">
             <div className="bg-white rounded shadow-sm p-4 h-100">
-              <h4 className="mb-4" style={{ fontWeight: '600', color: '#333' }}>
+              <h4 className="informasi" style={{ fontWeight: '600', color: '#333' }}>
                 Informasi Kontak
               </h4>
 
@@ -48,20 +50,21 @@ export default function Kontak() {
                 <div className="d-flex align-items-center">
                    <img 
                         src={Logo}
+                        className='logo'
                         alt="logo"
                         style={{ height: '70px' }}
                         />
                 </div>
               </div>
 
-              <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6', marginBottom: '24px' }}>
+              <p className="deskripsi-kontak" style={{ color: '#666', fontSize: '14px', lineHeight: '1.6', marginBottom: '24px' }}>
                 Satu Data adalah sebuah inisiatif pemerintah Indonesia untuk mendorong 
                 penggunaan kebijakan berdasarkan data. Untuk mewujudkan hal tersebut, 
                 diperlukan pemahaman atas satu pemerintah yang akurat, terbuka, dan 
                 interoperable.
               </p>
 
-              <div style={{ fontSize: '14px', color: '#333' }}>
+              <div classNamestyle={{ fontSize: '14px', color: '#333' }}>
                 <p className="mb-2">
                   <strong>Alamat:</strong> Jl. Budi Anak Tuha No. 1 Sukadana, Lampung Timur
                 </p>
@@ -147,9 +150,16 @@ export default function Kontak() {
 
         <div className="mt-4">
           <div className="bg-white rounded shadow-sm p-4">
-            <h4 className="mb-3" style={{ fontWeight: '600', color: '#333' }}>
-              Lokasi Kami
-            </h4>
+            <div className='ikon-lokasi'>
+              <img 
+                src={lokasi}
+                alt="Lokasi Kami"
+                className="location"
+              />
+              <h4 style={{ fontWeight: '600', color: '#333' }}>
+                Lokasi Kami
+              </h4>
+            </div>
             <div style={{ 
               width: '100%', 
               height: '400px', 

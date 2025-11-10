@@ -1,0 +1,35 @@
+.container-kontak {
+    background: #ffff;
+}
+
+.judul {
+    color: #ffff;
+    font-weight: 600;
+    font-size: 36px;
+}
+
+.text-kontak {
+    color: #666;
+    font-size: 14px;
+}
+
+.informasi {
+    font-weight: 600;
+    color: #333;
+}
+
+.logo{
+    height: 70px;
+}
+
+.deskripsi-kontak {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.alamat {
+    font-size: 14px;
+    color: #333;
+}

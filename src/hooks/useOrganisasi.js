@@ -40,11 +40,17 @@ export default function useOrganisasi() {
           org.nama_opd.toLowerCase().includes(activeTab.toLowerCase())
         );
 
+  const truncateNamaOpd = (nama) => {
+    if (!nama) return "";
+    return nama.length > 100 ? nama.slice(0, 100) + "..." : nama;
+  };
+
   return {
     tabs,
     activeTab,
     setActiveTab,
     filteredData,
     loading,
+    truncateNamaOpd,
   };
 }

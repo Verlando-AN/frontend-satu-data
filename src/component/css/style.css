@@ -394,6 +394,7 @@
 .category-name {
   font-size: 14px;
   font-weight: 700;
+  padding: 10px;
   color: #2d3748;
   transition: all 0.3s ease;
 }

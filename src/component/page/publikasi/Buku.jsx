@@ -20,7 +20,7 @@ export default function Buku() {
   }
 
   const tanggal = new Date(publikasiData.created_at * 1000).toLocaleDateString("id-ID");
-  const gambar = publikasiData.cover
+  const gambar = publikasiData.foto_cover
     ? `https://api-satudata.lampungtimurkab.go.id/${publikasiData.foto_cover}`
     : img_logo;
 

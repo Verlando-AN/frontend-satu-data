@@ -1,16 +1,37 @@
-.container-kontak {
-    background: #ffff;
+* {
+  box-sizing: border-box;
 }
 
-.judul {
-    color: #ffff;
+.container-kontak {
+}
+
+.judul-kontak{
+    position: relative;
+    text-align: center;
+    background: #ff5b5b13;
+    padding: 5rem;
+    z-index: 2;
+}
+
+.judul { 
+    background: linear-gradient(135deg,  #ff7575 0%, #ff0c0c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 600;
-    font-size: 36px;
+    font-size: 56px;
 }
 
 .text-kontak {
     color: #666;
     font-size: 14px;
+}
+
+
+.informasi-kontak {
+    font-weight: 600;
+    padding: 0 5rem;
+    /* background: #333; */
 }
 
 .informasi {
@@ -19,17 +40,36 @@
 }
 
 .logo{
-    height: 70px;
+    height: 90px;
+    margin: 0.1rem 0;
 }
 
 .deskripsi-kontak {
     color: #666;
-    font-size: 14px;
+    padding: 0 4rem;
+    font-size: 15px;
     line-height: 1.6;
     margin-bottom: 24px;
 }
 
-.alamat {
-    font-size: 14px;
-    color: #333;
+.detail-kontak{
+    color: #666;
+    padding: 0 4rem;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.lokasi-kontak {
+    padding: 2rem 3rem;
+}
+
+.pesan-kontak {
+    position: absolute;
+    right: 7rem;
+    top: 40rem;
+    width: 500px;
+    padding: 2rem;
+    border-radius: 8%;
+    background: #ff9b9b;
 }

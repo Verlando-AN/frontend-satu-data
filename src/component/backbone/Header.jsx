@@ -60,7 +60,7 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link text-secondary fw-medium px-3" to="/kontak">
-                Kontak
+                Contact
               </NavLink>
             </li>
           </ul>
